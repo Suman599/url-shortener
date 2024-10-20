@@ -6,9 +6,11 @@ import Link from './pages/link';
 import Dashboard from './pages/dashboard';
 import LandingPage from './pages/landing';
 import AppLayout from './layouts/app-layout';
+import UrlProvider from './context';
+import RequireAuth from './components/require-auth';
 
 
-function App() {
+
   
   const router=createBrowserRouter([
     {
@@ -20,7 +22,7 @@ function App() {
         },
         {
           path:'/dashboard',
-          element:<Dashboard />
+          element:(<RequireAuth><Dashboard /></RequireAuth>),
         },
         {
           path:'/auth',
@@ -28,7 +30,7 @@ function App() {
         },
         {
           path:'/link/:id',
-          element:<Link />
+          element:(<RequireAuth><Link /></RequireAuth>),
         },
         {
           path:'/:id',
@@ -37,7 +39,13 @@ function App() {
       ]
     }
   ]);
-  return <RouterProvider router={router} />;
-}
+
+  function App(){
+  return(
+    <UrlProvider>
+    <RouterProvider router={router} />;
+    </UrlProvider>
+  );
+  }
 
 export default App;
