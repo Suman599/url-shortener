@@ -1,0 +1,11 @@
+import supabase from "./supabase";
+
+export async function getCurrentUser(user_id){
+    const {data,error}=await supabase.from("urls").select("*").eq("user_id",user_id)
+    if(!session.session) return null;
+    if(error){
+        console.error(error.message);
+        throw new Error("Unable to load URLs");
+    }
+    return data;
+}
