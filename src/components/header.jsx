@@ -14,6 +14,7 @@ import {logout} from "@/db/apiAuth"
 import { UrlState } from '@/context';
 import useFetch from '@/hooks/use-fetch';
 import { BarLoader } from 'react-spinners';
+import { LinkIcon } from 'lucide-react';
 const Header = () => {
     const navigate=useNavigate();
     const { user,fetchUser }=UrlState();
@@ -37,10 +38,14 @@ const Header = () => {
             <DropdownMenuContent>
             <DropdownMenuLabel>{user.user_metadata?.name}</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-red-400">
-                
-                <span>My Links</span>
+            <DropdownMenuItem>
+                <Link to="/dashboard" className="flex">
+                    <LinkIcon className="mr-2 h-4 w-4" />
+                    My Links
+                </Link>
             </DropdownMenuItem>
+
+            
             <DropdownMenuItem className="text-red-400">
                 <logout className="mr-2 h-4 w-4" />
                 <span onClick={()=>{
