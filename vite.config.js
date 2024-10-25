@@ -11,9 +11,10 @@ export default defineConfig({
     },
   },
   build: {
-    // Specify the output directory if needed
-    outDir: 'dist', // This is the default, so you can remove it if you want
+    outDir: 'dist',
   },
-  // Optional: Set base to '/' if deploying to the root
-  base: '/', // Adjust if deploying in a sub-directory
+  server: {
+    host: '0.0.0.0',  // Allow access from any IP address
+    port: 5173,       // Default port for preview
+  },
 });
